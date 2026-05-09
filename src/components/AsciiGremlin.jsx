@@ -1,28 +1,39 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// Green phosphor ASCII Gremlin — pointy ears, sharp teeth, mischievous
+// Green phosphor ASCII Gremlin — full body, spiky hair, big ears, toothy grin
 const GREMLIN_ART = `
-                 /\\                                   /\\
-                /  \\                                 /  \\
-               / .. \\           ▄▄▄▄▄▄▄▄           / .. \\
-              / .  . \\      ▄██████████████▄      / .  . \\
-             / .    . \\   ▄██▀▀          ▀▀██▄   / .    . \\
-            /  .    .  \\ ██▀  ▄▄▄      ▄▄▄  ▀██ /  .    .  \\
-           /____________\\█▌  █▓▓▓█    █▓▓▓█  ▐█/____________\\
-                         █▌  █▓▓▓█    █▓▓▓█  ▐█
-                         ██   ▀▀▀      ▀▀▀   ██
-                         █▌    ▄   ▄▄   ▄    ▐█
-                         ██   █ ▀▀▀▀▀▀ █     ██
-                         ▐█▌   ▀ ▄▄▄▄ ▀    ▐█▌
-                          ██▄    ▀▀▀▀▀▀   ▄██
-                           ▀██▄▄       ▄▄██▀
-                             ▀▀█████████▀▀
-                            ╱   ╲     ╱   ╲
-                           ╱     ╲   ╱     ╲
-                     ═══╤═╧═══════╧═╧═══════╧═╤═══
-                        │   THE GLITCH LIVES   │
-                        ╘══════════════════════╛
+                                  \\|/
+                               \\  _|_  /
+                                \\/ | \\/
+                                 \\_|_/
+                              __.--'--.__
+                          _.-'           '-._
+               __       /    .--. _ .--.    \\       __
+             .'  '-.  .'   .'   '   '   '.   '.  .-'  '.
+           .'      _\\/   .'    .----.    '.   \\/_      '.
+          /    _.-'  |  /    .'  __  '.    \\  |  '-._    \\
+         /  .-'      | |   /  .'  '.  \\   | |      '-.  \\
+        / .'         | |  |  / (@@) \\  |  | |         '. \\
+       /.'           | |  | |  .--.  | |  | |           '.\\
+      /'   __        | |  | | | || | | |  | |        __   '\\
+     /   .'  '.      | |  |  \\ '--' /  |  | |      .'  '.   \\
+    /   /      \\     | |   \\  '.  .'  /   | |     /      \\   \\
+    \\  '.      /     | |    '.  ''  .'    | |     \\      .'  /
+     \\   '-..-'      | |      '-..-'      | |      '-..-'   /
+      \\              | |    _  |\\/\\/|  _   | |              /
+       \\             |  \\  | \\ |    | / |  /  |             /
+        '.           |   '.|  \\| >< |/  |.'   |           .'
+          '-._       |      '--. \\/ .--'      |       _.-'
+              '-._ _ |    .-----|  |-----.    | _ _.-'
+                     |   / .----|  |----. \\   |
+                     |  | |     |  |     | |  |
+                     |  | |  .--'  '--.  | |  |
+                     '--' | |  |    |  | | '--'
+                          | |  |    |  | |
+                          '--' '----' '--'
+                         /    \\      /    \\
+                        '------'    '------'
 `;
 
 // Giant ASCII GREMLIN text logo
@@ -72,14 +83,14 @@ export default function AsciiGremlin() {
         }}
       />
 
-      {/* ASCII Gremlin Head — parallax + glitch burst */}
+      {/* ASCII Gremlin — parallax + glitch burst */}
       <motion.pre
         animate={{ x: offset.x, y: offset.y }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
         className="text-phosphor select-none relative z-10 glitch-burst"
         style={{
-          fontSize: 'clamp(5px, 1.1vw, 11px)',
-          lineHeight: '1.2',
+          fontSize: 'clamp(5px, 0.85vw, 10px)',
+          lineHeight: '1.25',
           textShadow: '0 0 12px #00FF4140, 0 0 25px #00FF4120',
         }}
       >
