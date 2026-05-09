@@ -1,0 +1,209 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════════
+   GREMLIN MAINFRAME — CRT TERMINAL DESIGN SYSTEM
+   Phosphor Green (#00FF41) on Void Black (#000000)
+   ═══════════════════════════════════════════════════════════════ */
+
+@theme {
+  --color-phosphor: #00FF41;
+  --color-phosphor-dim: #00cc33;
+  --color-phosphor-dark: #009922;
+  --color-phosphor-muted: #00FF4133;
+  --color-void: #000000;
+  --color-void-light: #0a0a0a;
+  --color-ember: #FFAA00;
+  --color-ember-dim: #cc880088;
+  --color-danger: #FF0040;
+  --font-mono: 'VT323', 'Fira Code', 'Courier New', monospace;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--color-void);
+  color: var(--color-phosphor);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  margin: 0;
+  animation: crt-flicker 4s infinite;
+}
+
+::selection {
+  background: var(--color-phosphor);
+  color: var(--color-void);
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--color-void); }
+::-webkit-scrollbar-thumb { background: var(--color-phosphor-dark); }
+::-webkit-scrollbar-thumb:hover { background: var(--color-phosphor-dim); }
+
+/* ── CRT FLICKER ──────────────────────────────────────────── */
+@keyframes crt-flicker {
+  0%, 100% { opacity: 1; }
+  3% { opacity: 0.96; }
+  6% { opacity: 1; }
+  7.5% { opacity: 0.97; }
+  9% { opacity: 1; }
+  50% { opacity: 1; }
+  52% { opacity: 0.95; }
+  53% { opacity: 1; }
+  75.5% { opacity: 0.97; }
+  76% { opacity: 1; }
+}
+
+/* ── GLITCH EFFECT ────────────────────────────────────────── */
+.glitch {
+  position: relative;
+  display: inline-block;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  animation: glitch-a 8s infinite linear alternate-reverse;
+  text-shadow: -2px 0 #FF0040;
+  clip-path: inset(0 0 85% 0);
+}
+
+.glitch::after {
+  animation: glitch-b 6s infinite linear alternate-reverse;
+  text-shadow: 2px 0 #0044ff;
+  clip-path: inset(85% 0 0 0);
+}
+
+@keyframes glitch-a {
+  0% { clip-path: inset(0 0 85% 0); transform: translate(0); }
+  5% { clip-path: inset(15% 0 60% 0); transform: translate(-4px, 2px); }
+  10% { clip-path: inset(0 0 85% 0); transform: translate(0); }
+  15% { clip-path: inset(55% 0 10% 0); transform: translate(3px, -1px); }
+  20% { clip-path: inset(0 0 85% 0); transform: translate(0); }
+  100% { clip-path: inset(0 0 85% 0); transform: translate(0); }
+}
+
+@keyframes glitch-b {
+  0% { clip-path: inset(85% 0 0 0); transform: translate(0); }
+  8% { clip-path: inset(40% 0 20% 0); transform: translate(4px, 1px); }
+  12% { clip-path: inset(85% 0 0 0); transform: translate(0); }
+  18% { clip-path: inset(20% 0 55% 0); transform: translate(-3px, -1px); }
+  22% { clip-path: inset(85% 0 0 0); transform: translate(0); }
+  100% { clip-path: inset(85% 0 0 0); transform: translate(0); }
+}
+
+/* ── RANDOM GLITCH BURST ──────────────────────────────────── */
+@keyframes glitch-burst {
+  0%, 95%, 100% { transform: translate(0) skew(0); filter: none; }
+  96% { transform: translate(-3px, 1px) skew(-1deg); filter: hue-rotate(90deg); }
+  97% { transform: translate(3px, -1px) skew(1deg); filter: hue-rotate(-90deg) brightness(1.5); }
+  98% { transform: translate(-1px, 2px) skew(0.5deg); filter: invert(1); }
+  99% { transform: translate(2px, 0) skew(-0.5deg); filter: none; }
+}
+
+.glitch-burst {
+  animation: glitch-burst 12s infinite;
+}
+
+/* ── BLINK CURSOR ─────────────────────────────────────────── */
+.cursor-blink {
+  display: inline-block;
+  width: 10px;
+  height: 1.2em;
+  background: var(--color-phosphor);
+  margin-left: 4px;
+  vertical-align: text-bottom;
+  animation: blink-cursor 1s step-end infinite;
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+/* ── TEXT GLOW ────────────────────────────────────────────── */
+.text-glow {
+  text-shadow: 0 0 10px #00FF41, 0 0 40px #00FF4133;
+}
+
+.text-glow-strong {
+  text-shadow: 0 0 10px #00FF41, 0 0 30px #00FF4166, 0 0 60px #00FF4133;
+}
+
+.text-glow-ember {
+  text-shadow: 0 0 10px #FFAA00, 0 0 30px #FFAA0055;
+}
+
+/* ── TERMINAL BUTTON ──────────────────────────────────────── */
+.terminal-btn {
+  background: transparent;
+  border: 1px solid var(--color-phosphor);
+  color: var(--color-phosphor);
+  font-family: var(--font-mono);
+  font-size: 16px;
+  padding: 10px 28px;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  transition: all 0.15s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal-btn:hover {
+  background: var(--color-phosphor);
+  color: var(--color-void);
+  box-shadow: 0 0 20px #00FF4144, 0 0 40px #00FF4122;
+}
+
+/* ── TYPEWRITER ───────────────────────────────────────────── */
+@keyframes typewriter-cursor {
+  0%, 100% { border-right-color: var(--color-phosphor); }
+  50% { border-right-color: transparent; }
+}
+
+/* ── SCANLINE ─────────────────────────────────────────────── */
+.scanline-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9998;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15) 0px,
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  mix-blend-mode: multiply;
+}
+
+/* ── GREEN AMBIENT GLOW ───────────────────────────────────── */
+.scanline-overlay::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 50%, #00FF4106 0%, transparent 70%);
+  pointer-events: none;
+}
+
+a {
+  color: var(--color-phosphor);
+  text-decoration: none;
+  transition: text-shadow 0.2s;
+}
+a:hover {
+  text-shadow: 0 0 10px #00FF41;
+}
