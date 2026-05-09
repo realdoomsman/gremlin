@@ -1,41 +1,6 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion } from 'framer-motion';
 
-// Green phosphor ASCII Gremlin — full body, spiky hair, big ears, toothy grin
-const GREMLIN_ART = `
-                                  \\|/
-                               \\  _|_  /
-                                \\/ | \\/
-                                 \\_|_/
-                              __.--'--.__
-                          _.-'           '-._
-               __       /    .--. _ .--.    \\       __
-             .'  '-.  .'   .'   '   '   '.   '.  .-'  '.
-           .'      _\\/   .'    .----.    '.   \\/_      '.
-          /    _.-'  |  /    .'  __  '.    \\  |  '-._    \\
-         /  .-'      | |   /  .'  '.  \\   | |      '-.  \\
-        / .'         | |  |  / (@@) \\  |  | |         '. \\
-       /.'           | |  | |  .--.  | |  | |           '.\\
-      /'   __        | |  | | | || | | |  | |        __   '\\
-     /   .'  '.      | |  |  \\ '--' /  |  | |      .'  '.   \\
-    /   /      \\     | |   \\  '.  .'  /   | |     /      \\   \\
-    \\  '.      /     | |    '.  ''  .'    | |     \\      .'  /
-     \\   '-..-'      | |      '-..-'      | |      '-..-'   /
-      \\              | |    _  |\\/\\/|  _   | |              /
-       \\             |  \\  | \\ |    | / |  /  |             /
-        '.           |   '.|  \\| >< |/  |.'   |           .'
-          '-._       |      '--. \\/ .--'      |       _.-'
-              '-._ _ |    .-----|  |-----.    | _ _.-'
-                     |   / .----|  |----. \\   |
-                     |  | |     |  |     | |  |
-                     |  | |  .--'  '--.  | |  |
-                     '--' | |  |    |  | | '--'
-                          | |  |    |  | |
-                          '--' '----' '--'
-                         /    \\      /    \\
-                        '------'    '------'
-`;
-
 // Giant ASCII GREMLIN text logo
 const LOGO_TEXT = `
   ██████╗ ██████╗ ███████╗███╗   ███╗██╗     ██╗███╗   ██╗
@@ -77,33 +42,39 @@ export default function AsciiGremlin() {
       <div
         className="absolute pointer-events-none"
         style={{
-          width: '700px', height: '700px', borderRadius: '50%',
-          background: 'radial-gradient(circle, #00FF4109 0%, transparent 70%)',
+          width: '800px', height: '800px', borderRadius: '50%',
+          background: 'radial-gradient(circle, #00FF4112 0%, transparent 70%)',
           top: '50%', left: '50%', transform: 'translate(-50%, -50%)',
         }}
       />
 
-      {/* ASCII Gremlin — parallax + glitch burst */}
-      <motion.pre
+      {/* Gremlin hero image — parallax + glitch burst */}
+      <motion.div
         animate={{ x: offset.x, y: offset.y }}
         transition={{ type: 'spring', stiffness: 120, damping: 20 }}
-        className="text-phosphor select-none relative z-10 glitch-burst"
-        style={{
-          fontSize: 'clamp(5px, 0.85vw, 10px)',
-          lineHeight: '1.25',
-          textShadow: '0 0 12px #00FF4140, 0 0 25px #00FF4120',
-        }}
+        className="relative z-10 glitch-burst"
       >
-        {GREMLIN_ART}
-      </motion.pre>
+        <img
+          src="/gremlin-hero.png"
+          alt="Gremlin"
+          className="select-none pointer-events-none mx-auto"
+          style={{
+            width: 'clamp(200px, 35vw, 380px)',
+            height: 'auto',
+            filter: 'drop-shadow(0 0 30px #00FF4140) drop-shadow(0 0 60px #00FF4120)',
+            imageRendering: 'pixelated',
+          }}
+          draggable={false}
+        />
+      </motion.div>
 
-      {/* ASCII GREMLIN Logo — typewriter reveal */}
+      {/* ASCII GREMLIN Logo */}
       {logoVisible && (
         <motion.pre
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.3 }}
-          className="glitch text-glow-strong relative z-10 mt-4"
+          className="glitch text-glow-strong relative z-10 mt-6"
           data-text={LOGO_TEXT}
           style={{
             color: '#00FF41',
